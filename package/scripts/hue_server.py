@@ -22,6 +22,7 @@ sys.setdefaultencoding('utf8')
 from resource_management import *
 from subprocess import call
 from setup_hue import setup_hue
+from setup_hue import prepared_hue
 from common import download_hue
 
 class HueServer(Script):
@@ -41,13 +42,18 @@ class HueServer(Script):
     import params
     env.set_params(params)
     setup_hue()
+
+  def prepared(self, env):
+    import params
+    env.set_params(params)
+    prepared_hue()
     
   def start(self, env):
     import params
     self.stop(env)
-    self.configure(env)
+    self.prepared(env)
     Execute('chown -R -v hue:hue {hue_log_dir}')
-    Execute('cd /user/local/hue && source ./build/env/bin/activate')
+    Execute('cd /usr/local/hue && source ./build/env/bin/activate')
     Execute(format("nohup {hue_bin_dir}/supervisor >> {hue_log_file} 2>&1 &"),
           environment={'JAVA_HOME': params.java_home, 
                       'HADOOP_CONF_DIR': params.hadoop_conf_dir, 
@@ -94,8 +100,9 @@ class HueServer(Script):
       Execute (format("{hue_bin_dir}/hue migrate"), user=params.hue_user)
     else:
       Logger.info("echo Hue Metastore is stored in $HUE/desktop/desktop.db >> " + params.hue_log_file)
+
   def restart(self, env):
-    self.configure(env)
+    self.prepared(env)
     print "restart HUE"
     self.stop(env)
     self.start(env)

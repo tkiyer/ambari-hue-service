@@ -48,10 +48,10 @@ stack_root = Script.get_stack_root()
 ## Add stack version for HDP 3.0
 stack_version_unformatted = config['clusterLevelParams']['stack_version']
 # Hue download url, changed the url by added '/' before hue/hue-${verion}.tar.gz
-download_url = 'cat /etc/yum.repos.d/HDP.repo | grep "baseurl" | awk -F \'=\' \'{print $2"/hue/hue-4.3.0.tar.gz"}\''
+download_url = 'cat /etc/yum.repos.d/ambari.repo | grep "baseurl" | awk -F \'=\' \'{print $2"/hue/hue-4.3.0.tar.gz"}\''
 
-hue_env_python = '
-"""
+hue_env_python = """
+\"\"\"
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
 distributed with this work for additional information
@@ -67,12 +67,12 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-"""
+\"\"\"
 
 import sys
 reload(sys)
-sys.setdefaultencoding(\'utf-8\')
-'
+sys.setdefaultencoding("utf-8")
+"""
 
 # New Cluster Stack Version that is defined during the RESTART of a Rolling Upgrade
 version = default("/commandParams/version", None)
@@ -129,8 +129,8 @@ if hue_spark_module_enabled == 'No':
 app_blacklists = list(set(app_blacklists))
 app_blacklist = ','.join(app_blacklists)
 
-java_home = config['hostLevelParams']['java_home']
-http_host = config['hostname']
+java_home = config['ambariLevelParams']['java_home']
+http_host = config['agentLevelParams']['hostname']
 http_port = config['configurations']['hue-env']['http_port']
 hue_pid_dir = config['configurations']['hue-env']['hue_pid_dir']
 hue_log_dir = config['configurations']['hue-env']['hue_log_dir']

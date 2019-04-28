@@ -78,7 +78,7 @@ def download_hue():
   Execute('tar -zxvf hue.tgz -C {0} && rm -f hue.tgz'.format(params.hue_install_dir))
 
   Execute('rm -rf {0}'.format(params.hue_dir))
-  Execute('yum install -y hue-4.3.0')
+  # Execute('yum install -y hue-4.3.0')
   Execute('source /etc/profile')
   Execute('cd {0}/hue-4.3.0 &&  make install'.format(params.hue_install_dir))
 
@@ -123,9 +123,9 @@ def add_hdfs_configuration(if_ranger=False, security_enabled=False):
   if params.dfs_ha_enabled:
     services_configurations['core-site']['hadoop.proxyuser.httpfs.groups'] = '*'
     services_configurations['core-site']['hadoop.proxyuser.httpfs.hosts'] = '*'
-    services_configurations['httpfs-site'] = {}
-    services_configurations['httpfs-site']['httpfs.proxyuser.hue.groups'] = '*'
-    services_configurations['httpfs-site']['httpfs.proxyuser.hue.hosts'] = '*'
+    # services_configurations['httpfs-site'] = {}
+    # services_configurations['httpfs-site']['httpfs.proxyuser.hue.groups'] = '*'
+    # services_configurations['httpfs-site']['httpfs.proxyuser.hue.hosts'] = '*'
   if security_enabled:
     services_configurations['core-site']['hadoop.proxyuser.HTTP.groups'] = '*'
     services_configurations['core-site']['hadoop.proxyuser.HTTP.hosts'] = '*'

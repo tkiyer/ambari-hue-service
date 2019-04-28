@@ -10,7 +10,7 @@ Thanks to star.
 ## Version
    + Hue 4.3.0
    + Ambari 2.7+
-   + HDP 3.0
+   + HDP 3.1.0
 
 ## Required
    - Python=2.7
@@ -40,7 +40,7 @@ Thanks to star.
 # sudo service hadoop-httpfs start
 （or /usr/hdp/current/hadoop-httpfs/etc/rc.d/init.d/hadoop-httpfs start）
 ```
-
+Refer [Deploying HUE with an HA cluster](https://docs.hortonworks.com/HDPDocuments/HDP3/HDP-3.1.0/fault-tolerance/content/deploying_hue_with_an_ha_cluster.html)
 
 ## Setup
 

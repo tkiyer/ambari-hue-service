@@ -82,13 +82,16 @@
 	      <package><name>sqlite-devel</name></package>
 	      <package><name>rsync</name></package>
 	      <package><name>saslwrapper-devel</name></package>
-              <package><name>pycrypto</name></package>
+        <package><name>pycrypto</name></package>
 	      <package><name>gmp-devel</name></package>
 	      <package><name>libyaml-devel</name></package>
 	      <package><name>cyrus-sasl-plain</name></package>
 	      <package><name>cyrus-sasl-devel</name></package>
 	      <package><name>cyrus-sasl-gssapi</name></package>
 	      <package><name>libffi-devel</name></package>
+				<package><name>openssl-devel</name></package>
+				<package><name>mariadb-devel</name></package>
+				<package><name>gcc-c++</name></package>
         </packages>
 	  </osSpecific>
 	</osSpecifics>
